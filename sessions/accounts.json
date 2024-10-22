@@ -1,0 +1,17 @@
+[
+  {
+    "session_name": "#UTAMA",
+    "user_agent": "Mozilla/5.0 (Linux; Android 13.0; Xiaomi Mi 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.4.9593.2 Mobile Safari/537.36",
+    "proxy": "socks5://c38352628dfa993d3609__cr.id:bbe242b9529cf551:148.251.5.30:10000"
+  },
+  {
+    "session_name": "#TESTUTAMA",
+    "user_agent": "Mozilla/5.0 (Linux; Android 13.0; Xiaomi Poco X3 NFC) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.1.2201.63 Mobile Safari/537.36",
+    "proxy": "socks5://c38352628dfa993d3609__cr.id:bbe242b9529cf551:148.251.5.30:10001"
+  },
+  {
+    "session_name": "#TESTING",
+    "user_agent": "Mozilla/5.0 (Linux; Android 13.0; Xiaomi Mi A3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.9.7350.69 Mobile Safari/537.36",
+    "proxy": null
+  }
+]

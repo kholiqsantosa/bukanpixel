@@ -64,17 +64,17 @@ async def process() -> None:
 
     used_session_names = load_session_names()
 
+
     if action == 2:
-        await register_sessions()
+        await register_sessions()  # Tidak perlu mengirim device_model di sini
     elif action == 1:
         accounts = await Accounts().get_accounts()
-
-        # Dapatkan device_model di sini
-        device_model = get_random_android_device()
-
-        await run_tasks(accounts=accounts, used_session_names=used_session_names, device_model=device_model)
-
-
+        tasks = []
+        for account in accounts:
+            session_name, user_agent, raw_proxy = account.values()
+            # Ambil device model dari JSON berdasarkan session_name
+            device_model = get_random_android_device(session_name)
+            await run_tasks(accounts=accounts, used_session_names=used_session_names, device_model=device_model)
 async def run_tasks(accounts: [Any, Any, list], used_session_names: [str], device_model: str):
     tasks = []
     for account in accounts:
@@ -84,13 +84,16 @@ async def run_tasks(accounts: [Any, Any, list], used_session_names: [str], devic
         tg_client = await get_tg_client(
             session_name=session_name,
             proxy=raw_proxy,
-            device_model=device_model,
-            app_version="Android 11.2.2",  # Versi aplikasi yang ingin digunakan
+            device_model=device_model,  # Gunakan device_model yang sama
+            app_version="11.2.2",  # Versi aplikasi yang ingin digunakan
             system_version="Android 13.0"   # Versi sistem operasi
         )
+
+        # ... kode yang ada ...
         
         proxy = get_proxy(raw_proxy=raw_proxy)
         tasks.append(asyncio.create_task(run_tapper(tg_client=tg_client, user_agent=user_agent, proxy=proxy, first_run=first_run)))
         await asyncio.sleep(randint(5, 20))
 
     await asyncio.gather(*tasks)
+

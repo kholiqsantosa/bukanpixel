@@ -17,8 +17,9 @@ async def register_sessions() -> None:
     if not session_name:
         return None
 
+    # Ambil input proxy dari pengguna
     raw_proxy = input("Input the proxy in the format type://user:pass:ip:port (press Enter to use without proxy): ")
-    device_model = get_random_android_device()  # Ambil device model secara acak dari daftar Xiaomi
+    device_model = get_random_android_device(session_name)  # Ambil device model secara konsisten untuk session ini
 
     # Tambahkan app_version dan system_version di sini
     app_version = "11.2.2"  # Versi aplikasi yang ingin digunakan
@@ -74,3 +75,4 @@ async def get_tg_client(session_name: str, proxy: str | None, device_model: str,
     )
 
     return tg_client
+

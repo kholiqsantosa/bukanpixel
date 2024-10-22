@@ -1,4 +1,6 @@
 import random
+import json
+import os
 
 # Daftar 15 tipe HP Xiaomi
 xiao_devices = [
@@ -10,9 +12,40 @@ xiao_devices = [
     'Xiaomi Mi 8', 'Redmi 9', 'Xiaomi Mi 10T'
 ]
 
-def get_random_android_device() -> str:
-    """Mengambil model perangkat Android secara acak dari daftar Xiaomi."""
-    return random.choice(xiao_devices)
+# Nama file JSON untuk menyimpan device_model berdasarkan session
+DEVICE_MODEL_FILE = 'device_models.json'
+
+def load_device_models() -> dict:
+    """Memuat semua device model dari file JSON."""
+    if os.path.exists(DEVICE_MODEL_FILE):
+        with open(DEVICE_MODEL_FILE, 'r') as file:
+            return json.load(file)
+    return {}
+
+def load_device_model(session_name: str) -> str:
+    """Memuat device model dari file JSON untuk session tertentu."""
+    device_models = load_device_models()
+    return device_models.get(session_name, None)
+
+def save_device_models(device_models: dict) -> None:
+    """Menyimpan semua device models ke dalam file JSON."""
+    with open(DEVICE_MODEL_FILE, 'w') as file:
+        json.dump(device_models, file)
+
+def save_device_model(session_name: str, device_model: str) -> None:
+    """Menyimpan device model untuk session tertentu ke dalam file JSON."""
+    device_models = load_device_models()  # Memuat semua device models
+    device_models[session_name] = device_model  # Perbarui atau tambahkan
+    save_device_models(device_models)  # Simpan kembali
+
+def get_random_android_device(session_name: str) -> str:
+    """Mengambil model perangkat Android berdasarkan session_name."""
+    device_model = load_device_model(session_name)
+    if device_model is None:
+        # Pilih device model secara acak dan simpan
+        device_model = random.choice(xiao_devices)
+        save_device_model(session_name, device_model)  # Simpan ke JSON
+    return device_model
 
 def generate_random_user_agent(device_type='android', browser_type='chrome', device_model=None):
     chrome_versions = list(range(110, 127))
@@ -37,3 +70,4 @@ def generate_random_user_agent(device_type='android', browser_type='chrome', dev
                     f"Gecko/{browser_version}.0 Firefox/{browser_version}.0")
 
     return None
+

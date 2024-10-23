@@ -38,10 +38,12 @@ async def register_sessions() -> None:
 
     user_agent = generate_random_user_agent(device_type='android', browser_type='chrome', device_model=device_model)
     
+    # Simpan semua data ke dalam JSON
     save_to_json(f'sessions/accounts.json',
                  dict_={
                     "session_name": session_name,
                     "user_agent": user_agent,
+                    "device_model": device_model,  # Menyimpan device model
                     "proxy": raw_proxy if raw_proxy else None
                  })
     logger.success(f'Session added successfully @{user_data.username} | {user_data.first_name} {user_data.last_name}')
@@ -75,4 +77,3 @@ async def get_tg_client(session_name: str, proxy: str | None, device_model: str,
     )
 
     return tg_client
-

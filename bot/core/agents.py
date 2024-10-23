@@ -2,14 +2,14 @@ import random
 import json
 import os
 
-# Daftar 15 tipe HP Xiaomi
-xiao_devices = [
-    'Xiaomi Mi 9', 'Xiaomi Mi 10', 'Xiaomi Mi 11',
+# Daftar 15 tipe HP (tanpa "Xiaomi")
+device_models = [
+    'Mi 9', 'Mi 10', 'Mi 11',
     'Redmi Note 8', 'Redmi Note 9', 'Redmi Note 13',
-    'Redmi K20', 'Redmi K30', 'Xiaomi Poco X6 Pro',
-    'Xiaomi Poco F1', 'Xiaomi Poco X3 NFC',
-    'Xiaomi Mi Mix 4', 'Xiaomi Mi A3', 'Xiaomi Mi A2',
-    'Xiaomi Mi 8', 'Redmi 9', 'Xiaomi Mi 10T'
+    'Redmi K20', 'Redmi K30', 'Poco X6 Pro',
+    'Poco F1', 'Poco X3 NFC',
+    'Mi Mix 4', 'Mi A3', 'Mi A2',
+    'Mi 8', 'Redmi 9', 'Mi 10T'
 ]
 
 # Nama file JSON untuk menyimpan device_model berdasarkan session
@@ -43,7 +43,9 @@ def get_random_android_device(session_name: str) -> str:
     device_model = load_device_model(session_name)
     if device_model is None:
         # Pilih device model secara acak dan simpan
-        device_model = random.choice(xiao_devices)
+        device_model = random.choice(device_models)
+        # Tambahkan "Xiaomi" di depan model perangkat
+        device_model = f"Xiaomi {device_model}"
         save_device_model(session_name, device_model)  # Simpan ke JSON
     return device_model
 
@@ -70,4 +72,3 @@ def generate_random_user_agent(device_type='android', browser_type='chrome', dev
                     f"Gecko/{browser_version}.0 Firefox/{browser_version}.0")
 
     return None
-

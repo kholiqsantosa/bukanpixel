@@ -4,16 +4,13 @@ import os
 
 # Daftar 15 tipe HP Xiaomi
 xiao_devices = [
-    'Xiaomi 14T', 'Xiaomi 14T Pro', 'Xiaomi 14',
-    'Xiaomi 13T', 'Redmi Note 13 5G', 'Redmi Note 13',
+    'Xiaomi Mi 9', 'Xiaomi Mi 10', 'Xiaomi Mi 11',
+    'Redmi Note 8', 'Redmi Note 9', 'Redmi Note 13',
     'Redmi K20', 'Redmi K30', 'Xiaomi Poco X6 Pro',
-    'Redmi Note 12', 'Xiaomi Poco X3 NFC',
+    'Xiaomi Poco F1', 'Xiaomi Poco X3 NFC',
     'Xiaomi Mi Mix 4', 'Xiaomi Mi A3', 'Xiaomi Mi A2',
     'Xiaomi Mi 8', 'Redmi 9', 'Xiaomi Mi 10T'
 ]
-
-# Pastikan tidak ada spasi ganda di antara kata-kata
-xiao_devices = [device.replace("  ", " ") for device in xiao_devices]
 
 # Nama file JSON untuk menyimpan device_model berdasarkan session
 DEVICE_MODEL_FILE = 'device_models.json'
@@ -46,7 +43,7 @@ def get_random_android_device(session_name: str) -> str:
     device_model = load_device_model(session_name)
     if device_model is None:
         # Pilih device model secara acak dan simpan
-        device_model = random.choice(xiao_devices).strip()
+        device_model = random.choice(xiao_devices)
         save_device_model(session_name, device_model)  # Simpan ke JSON
     return device_model
 

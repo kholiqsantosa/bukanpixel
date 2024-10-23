@@ -23,7 +23,6 @@ from bot.config import settings
 from bot.utils import logger
 from bot.exceptions import InvalidSession
 from .headers import headers, headers_squads
-
 from random import randint, choices
 
 from .image_checker import get_cords_and_color, template_to_join, inform, boost_record

@@ -86,7 +86,7 @@ async def run_tasks(accounts: [Any, Any, list], used_session_names: [str], devic
             proxy=raw_proxy,
             device_model=device_model,  # Gunakan device_model yang sama
             app_version="11.2.2",  # Versi aplikasi yang ingin digunakan
-            system_version="Android 13.0"   # Versi sistem operasi
+            system_version="Android 12 (31)"   # Versi sistem operasi
         )
 
         # ... kode yang ada ...

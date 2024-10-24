@@ -4,11 +4,9 @@ import os
 
 # Daftar 15 tipe HP (tanpa "Xiaomi")
 device_models = [
-    'Mi 9', 'Mi 10', 'Redmi K80', 'Redmi K50',
-    'Mi 13', 'Mi 14', 'Redmi K40', '14',
-    'Redmi K20', 'Redmi K30', 'Mi 12', '13',
-    'POCO F6', 'Mi 13', '14T', '13T', '12', '10i',
-    'Mi 11', 'Mi A3', 'Mi A2', 'Mi 10'
+    'Mi 9', 'Mi 10', 'Mi 8', 'Mi 10 Pro',
+    'Redmi K20', 'Redmi K30',
+    'Mi A3', 'Mi A2'
 ]
 
 # Nama file JSON untuk menyimpan device_model berdasarkan session
@@ -62,7 +60,7 @@ def generate_random_user_agent(device_type='android', browser_type='chrome', dev
         browser_version = random.choice(firefox_versions)
 
     if device_type == 'android':
-        android_versions = ['12 (31)', '12 (31)']
+        android_versions = ['12', '12']
         if browser_type == 'chrome':
             return (f"Mozilla/5.0 (Linux; Android {random.choice(android_versions)}; {device_model}) "
                     f"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.58 Mobile Safari/537.36")

@@ -23,7 +23,7 @@ async def register_sessions() -> None:
 
     # Tambahkan app_version dan system_version di sini
     app_version = "11.2.2"  # Versi aplikasi yang ingin digunakan
-    system_version = "Android 13.0"  # Versi sistem operasi
+    system_version = "Android 12 (31)"  # Versi sistem operasi
     
     session = await get_tg_client(
         session_name=session_name,
